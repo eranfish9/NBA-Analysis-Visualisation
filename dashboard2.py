@@ -16,7 +16,7 @@ page = st.sidebar.selectbox("Choose a page", ["Page 1 - Shot Clock & Catch and S
 
 # Load the data
 shot_data = pd.read_csv("shot_logs.csv", encoding="ISO-8859-1")
-shot_data['TIME_LEFT'] = 24 - shot_data['SHOT_CLOCK']
+shot_data['TIME_LEFT'] = shot_data['SHOT_CLOCK']
 
 player_df = pd.read_csv('players_teams.csv')
 shot_data = shot_data.merge(player_df, how='left', left_on='player_name', right_on='Player')
@@ -92,7 +92,7 @@ if page == "Page 1 - Shot Clock & Catch and Shoot":
     shot_data = filtered_data
 
     # Visualization 1: Shots Taken and Shooting Percentage by Time Left on Shot Clock
-    shot_data['SHOT_CLOCK_CATEGORY'] = pd.cut(shot_data['SHOT_CLOCK'], bins=[0, 5, 10, 15, 20, 24], labels=['0-5', '5-10', '10-15', '15-20', '20-24'])
+    shot_data['SHOT_CLOCK_CATEGORY'] = pd.cut(shot_data['SHOT_CLOCK'], bins=[0, 3, 6, 9, 12, 15, 18, 21, 24], labels=['0-3', '3-6', '6-9', '9-12', '12-15', '15-18', '18-21', '21-24'])
     shot_clock_summary = shot_data.groupby('SHOT_CLOCK_CATEGORY').agg({
         'SHOT_CLOCK': 'count',
         'FGM': 'sum'
@@ -439,7 +439,7 @@ elif page == "Page 3 - Teams Comparison":
         shot_data = filtered_data
 
         # Calculate time left on the shot clock
-        shot_data['TIME_LEFT'] = 24 - shot_data['SHOT_CLOCK']
+        shot_data['TIME_LEFT'] =  shot_data['SHOT_CLOCK']
 
         # Define thresholds manually
         thresholds = {
