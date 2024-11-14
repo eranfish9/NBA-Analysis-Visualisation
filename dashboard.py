@@ -212,7 +212,7 @@ elif page == "Page 2 - Players Comparison":
     selected_players_bubble = st.sidebar.multiselect(
         "Select players for Bubble Chart:",
         options=famous_players,
-        default=['LeBron James', 'Stephen Curry', 'Kawhi Leonard', 'James Harden', 'Chris Paul', 'Kobe Bryant', 'Anthony Davis']
+        default=['LeBron James', 'Stephen Curry', 'Kawhi Leonard', 'Chris Paul', 'Kobe Bryant', 'Anthony Davis']
     )
 
     # Player filters for new line/bar chart
